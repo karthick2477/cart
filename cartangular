@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<style>
+body
+{
+background: #eee !important;	
+}
+.form
+{
+  width: 333px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,);  
+}
+.breadcrumb
+{
+     width: 400px;
+     color:#fff;
+text-align:center;
+  margin: 0 auto;
+  background-color:rgb(66, 155, 245);
+  border: 1px solid rgba(0,0,0,0.1);  
+}
+ .row
+ {
+     padding-right:20px;
+ }
+.mark
+{
+color:red;
+background-color:#fff;
+float:right;
+}
+ #Button1 {
+    margin-top: -30px;
+    float: right;
+    height: 28px;
+    margin-right: 80px;
+    border-radius: 1px;
+    width: 15%;
+}
+
+.demo
+{
+ list-style-type: none;
+ padding-top:16px !important;
+padding-bottom:16px !important;
+width:100%;
+} 
+.demo li
+{
+border:1px solid #ddd;
+padding:9px;
+}
+.error
+{
+color:red;
+
+}
+.dataBox
+{
+border-radius: 4px 4px;
+height: 24px;
+margin-left:40px;
+}
+</style>
+<body>
+<script>
+var app=angular.module("Myapp",[]).controller("myCtrl",function($scope)
+{
+$scope.products = ["Milk", "Bread", "Cheese"];
+$scope.addItem=function()
+{
+ 
+if (!$scope.addMe) 
+{
+return;
+}
+ if ($scope.products.indexOf($scope.addMe) == -1)
+{
+            $scope.products.push($scope.addMe);
+ } 
+else
+ {
+   $scope.errortext = "This item is already Exists in your  list.";
+   }
+    }
+    $scope.removeItem = function (x)
+ {
+        $scope.errortext = "";    
+        $scope.products.splice(x, 1);
+    }
+});
+</script>
+<div  ng-app="Myapp"  ng-controller="myCtrl">
+<div class="breadcrumb"  style="max-width:450px">
+  <h2>My Cart</h2>
+  </div>
+
+  <div class="form">
+  <div class="row">
+  
+    <ul class="demo">
+				
+    <li ng-repeat="x in products">{{x}}<span class="mark" ng-click="removeItem($index)">x</span></li>
+ 
+</ul>
+  <div>    
+    
+  
+   <div>
+        <input class="dataBox" placeholder="Add shopping items here" ng-model="addMe">
+  </div>
+      <span>
+        <button id="Button1" ng-click="addItem()">Add</button></span>
+       </div>
+<p class="error">{{errortext}}</p>
+</div>
+</body>
+</html>
+
+
+
+
+
+
